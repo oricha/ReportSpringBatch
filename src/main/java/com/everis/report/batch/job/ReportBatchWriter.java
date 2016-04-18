@@ -35,9 +35,9 @@ import com.everis.report.batch.data.ReportDto;
 public class ReportBatchWriter implements ItemWriter<ReportDto> {
 	private static final Log LOGGER = LogFactory.getLog(ReportBatchWriter.class);
 	private static final String FILE_NAME = "ReportLogBatch";
-    private static final String[] HEADERS = { "Módulo", "Entorno", "Batch",
+    private static final String[] HEADERS = { "Modulo", "Entorno", "Batch",
             "Fecha", "RC", "Estado", "Tiempo", "Observaciones",
-            "Cadena ejecución" };
+            "Cadena ejecucion" };
  
     private String outputFilename;
     private Workbook workbook;
@@ -46,7 +46,6 @@ public class ReportBatchWriter implements ItemWriter<ReportDto> {
 	
 	
 	
-	@Override
 	public void write(List<? extends ReportDto> items) throws Exception {
 		
 		LOGGER.info("Iniciando el writer");

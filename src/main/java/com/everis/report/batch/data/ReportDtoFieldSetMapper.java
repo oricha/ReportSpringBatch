@@ -8,7 +8,6 @@ import org.springframework.validation.BindException;
 @Component("fieldSetMapper")
 public class ReportDtoFieldSetMapper implements FieldSetMapper<ReportDto> {
 
-	@Override
 	public ReportDto mapFieldSet(FieldSet fieldSet) throws BindException {
 
 		return new ReportDto(fieldSet.readString("modulo"),

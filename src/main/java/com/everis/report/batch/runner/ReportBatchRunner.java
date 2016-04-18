@@ -1,7 +1,5 @@
 package com.everis.report.batch.runner;
 
-import java.io.File;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -18,16 +16,18 @@ public class ReportBatchRunner {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ReportBatchRunner.class);
 
+	private static final String FILE = "classpath:/resources/fichero.log";
+
 	private JobLauncher jobLauncher;
 	
 	private Job job;
 	
-	public void launch(File file) throws Exception {
+	public void launch(String file) throws Exception {
 		LOG.info("starting import for file {}",file);
 		JobExecution exec = jobLauncher.run(
 			job, 
 			new JobParametersBuilder()
-				.addString("input.file", "file:"+file.getAbsolutePath())
+				.addString("input.file", "file:"+file)
 				.addLong("time",System.currentTimeMillis())
 				.toJobParameters()
 		);
@@ -41,5 +41,14 @@ public class ReportBatchRunner {
 	public void setJobLauncher(JobLauncher jobLauncher) {
 		this.jobLauncher = jobLauncher;
 	}
+	
+	public static void main(String[] args) {
+        ReportBatchRunner runner = new ReportBatchRunner();
+        try {
+			runner.launch(FILE);
+		} catch (Exception e) {
+			LOG.error(e.getMessage());
+		}
+    }
 	
 }
